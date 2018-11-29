@@ -5,7 +5,7 @@
   - name: Extract rpm repository
     unarchive:
       src=../repo.tar.gz
-      dest=~/
+      dest=/home/vagrant
   - name: Install createrepo package
     yum:
       name: repo/createrepo-0.9.9-28.el7.noarch.rpm
