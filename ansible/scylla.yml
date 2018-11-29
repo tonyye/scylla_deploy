@@ -1,0 +1,32 @@
+- name: Install scylladb
+  hosts: scylla
+  become: True
+  tasks:
+  - name: Extract rpm repository
+    unarchive:
+      src=../repo.tar.gz
+      dest=~/
+  - name: Install createrepo package
+    yum:
+      name: repo/createrepo-0.9.9-28.el7.noarch.rpm
+      state: present
+  - name: Create local rpm repository
+    command: createrepo --database /home/vagrant/repo
+  - name: Add local rpm repository
+    yum_repository:
+      name: scylla_repository
+      description: Local scylla YUM repo
+      baseurl: file:///home/vagrant/repo
+  - name: Install epel-release rpm package
+    yum:
+      name: epel-release
+      state: present
+      disablerepo: "*"
+      enablerepo: scylla_repository
+  - name: Install scylla rpm package
+    yum:
+      name: scylla
+      state: present
+      disablerepo: "*"
+      enablerepo: scylla_repository
+      disable_gpg_check: yes
