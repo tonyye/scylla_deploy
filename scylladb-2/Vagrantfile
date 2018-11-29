@@ -8,7 +8,7 @@ DOMAIN      = "nip.io"
 PRIVATE_KEY = "~/.ssh/id_rsa"
 PUBLIC_KEY  = '~/.ssh/id_rsa.pub'
 
-DISK = '../secondDisk.vdi'
+DISK = '../scylladb-2.vdi'
 
 Vagrant.configure(API_VERSION) do |config|
   config.vm.box = BOX_NAME

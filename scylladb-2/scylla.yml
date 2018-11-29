@@ -1,4 +1,7 @@
-- name: Copy rpm repository
-  copy:
-     src: ../repo.tar.gz
-     dest: /tmp/
+- name: Install scylladb
+  hosts: scylla
+  tasks:
+  - name: Copy rpm repository
+    copy:
+      src: ../repo.tar.gz
+      dest: /tmp/
