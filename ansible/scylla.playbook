@@ -30,3 +30,9 @@
       disablerepo: "*"
       enablerepo: scylla_repository
       disable_gpg_check: yes
+  - name: Configure Scylla
+    template:
+      src: scylla.yaml.j2
+      dest: /etc/scylla/scylla.yaml
+    tags:
+      - test
