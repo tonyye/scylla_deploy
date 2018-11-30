@@ -36,3 +36,16 @@
       dest: /etc/scylla/scylla.yaml
     tags:
       - test
+  - name: Copy scylla_setup
+    copy:
+      src: scylla_setup
+      dest: /usr/lib/scylla/scylla_setup
+      mode: 0755
+  - name: Run scylla_setup
+    command: scylla_setup --disks /dev/sdb --nic eth1 --setup-nic --no-ntp-setup
+    notify: Restart scylla-server
+  handlers:
+  - name: Restart scylla-server
+    service:
+      name: scylla-server
+      state: restarted

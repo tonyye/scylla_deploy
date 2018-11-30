@@ -75,7 +75,7 @@ seed_provider:
       parameters:
           # seeds is actually a comma-delimited list of addresses.
           # Ex: "<ip1>,<ip2>,<ip3>"
-          - seeds: {{ ansible_facts.eth1.ipv4.address }}
+          - seeds: 192.168.50.2,192.168.50.3
 
 # Address or interface to bind to and tell other Scylla nodes to connect to.
 # You _must_ change this if you want multiple nodes to be able to communicate!
